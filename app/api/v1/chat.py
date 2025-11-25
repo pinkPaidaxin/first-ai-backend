@@ -1,17 +1,23 @@
 from fastapi import APIRouter
-from app.models.schemas import ChatRequest, ChatResponse
+from typing import List
+from app.models.schemas import ChatRequest, ChatResponse, CharacterInfo, Response
 from app.services.chat_service import chat_service
 
 router = APIRouter()
 
 
-@router.get("/characters")
+@router.get("/characters", response_model=Response[List[CharacterInfo]])
 async def get_characters():
     """获取所有可用角色"""
     characters = chat_service.get_available_characters()
+
     return {
-        "characters": characters,
-        "total": len(characters)
+        "code": 0,
+        "message": "success",
+        "data": {
+            "characters": characters,
+            "total": len(characters)
+        }
     }
 
 
