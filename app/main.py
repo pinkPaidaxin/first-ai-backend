@@ -23,6 +23,7 @@ app.add_middleware(
 async def root():
     """根路径"""
     return {
+        "code": 0,
         "message": "欢迎使用AI伴侣API！",
         "available_endpoints": {
             "文档": "/docs",

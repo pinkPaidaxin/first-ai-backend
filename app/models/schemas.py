@@ -1,11 +1,11 @@
 from pydantic import BaseModel
-from typing import Generic, TypeVar, Optional
+from typing import Generic, TypeVar, Optional, Dict
 from pydantic.generics import GenericModel
 
 T = TypeVar("T")
 
 
-class Response(GenericModel, Generic[T]):
+class Response(BaseModel, Generic[T]):
     code: int = 0
     message: str = "success"
     data: Optional[T] = None
@@ -27,3 +27,8 @@ class CharacterInfo(BaseModel):
     name: str
     personality: str
     description: str
+
+
+class CharacterData(BaseModel):
+    characters: Dict[str, CharacterInfo]
+    total: int
