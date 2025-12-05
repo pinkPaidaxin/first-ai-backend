@@ -9,9 +9,10 @@ if [ -z "$PORT" ]; then
   PORT=8000
 fi
 
-# 启动服务
+echo "📡 Binding to 0.0.0.0:$PORT"
+
+# 启动服务（生产环境不使用 --reload）
 exec uvicorn app.main:app \
   --host 0.0.0.0 \
   --port $PORT \
-  --log-level info \
-  --reload
+  --log-level info
