@@ -20,7 +20,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # 生产环境要改成具体域名
-    allow_credentials=True,
+    allow_credentials=False,  # 使用 "*" 时不能为 True，且 JWT 通过 header 发送，不需要 credentials
     allow_methods=["*"],
     allow_headers=["*"],
 )
