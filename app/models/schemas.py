@@ -1,3 +1,8 @@
+'''
+Author: zhixin.wang
+Date: 2025-11-13 11:44:49
+LastEditors: zhixin.wang
+'''
 from pydantic import BaseModel
 from typing import Generic, TypeVar, Optional, Dict
 from pydantic.generics import GenericModel
@@ -36,17 +41,19 @@ class CharacterData(BaseModel):
 
 class UserCreate(BaseModel):
     username: str
+    email: str
     password: str
 
 
 class UserLogin(BaseModel):
-    username: str
+    email: str
     password: str
 
 
 class UserInfo(BaseModel):
     id: str
     username: str
+    email: str
 
     class Config:
         from_attributes = True

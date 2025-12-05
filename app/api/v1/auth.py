@@ -1,3 +1,8 @@
+'''
+Author: zhixin.wang
+Date: 2025-12-04 15:19:57
+LastEditors: zhixin.wang
+'''
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -19,6 +24,7 @@ async def register_user(payload: UserCreate, session: AsyncSession = Depends(get
         user = await user_service.create_user(
             session=session,
             username=payload.username,
+            email=payload.email,
             password=payload.password,
         )
     except UserAlreadyExistsError as exc:
@@ -43,7 +49,7 @@ async def login_user(payload: UserLogin, session: AsyncSession = Depends(get_db)
     try:
         user = await user_service.authenticate(
             session=session,
-            username=payload.username,
+            email=payload.email,
             password=payload.password,
         )
     except InvalidCredentialsError as exc:
@@ -61,5 +67,3 @@ async def login_user(payload: UserLogin, session: AsyncSession = Depends(get_db)
             access_token=token,
         ),
     )
-
-
