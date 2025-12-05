@@ -23,7 +23,19 @@ class Settings(BaseSettings):
     deepseek_r1_model_name: str = Field(..., alias="DEEPSEEK_R1_0528_QWEN3_8B_MODEL_NAME")
 
     default_provider: str = Field(default="deepseek_R1_0528_Qwen3_8B", alias="DEFAULT_PROVIDER")
-    # default_provider: str = 'deepseekR10528Qwen38B'
+
+    # 数据库
+    # 新增字段
+    supabase_url: str = Field(..., alias="SUPABASE_URL")
+    supabase_key: str = Field(..., alias="SUPABASE_KEY")
+    database_url: str = Field(..., alias="DATABASE_URL")
+
+    # JWT
+    jwt_secret_key: str = Field(..., alias="JWT_SECRET_KEY")
+    jwt_algorithm: str = Field(default="HS256", alias="JWT_ALGORITHM")
+    jwt_access_token_expire_minutes: int = Field(
+        default=60, alias="JWT_ACCESS_TOKEN_EXPIRE_MINUTES"
+    )
 
     # 添加角色配置
     character_profiles: Dict[str, Dict] = {

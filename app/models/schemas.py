@@ -32,3 +32,32 @@ class CharacterInfo(BaseModel):
 class CharacterData(BaseModel):
     characters: Dict[str, CharacterInfo]
     total: int
+
+
+class UserCreate(BaseModel):
+    username: str
+    password: str
+
+
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
+
+class UserInfo(BaseModel):
+    id: str
+    username: str
+
+    class Config:
+        from_attributes = True
+
+
+class AuthResponse(BaseModel):
+    user: UserInfo
+    access_token: str
+    token_type: str = "bearer"
+
+
+class TokenPayload(BaseModel):
+    sub: str
+    exp: int

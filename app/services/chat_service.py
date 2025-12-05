@@ -1,3 +1,8 @@
+'''
+Author: zhixin.wang
+Date: 2025-11-13 11:45:15
+LastEditors: zhixin.wang
+'''
 from openai import AsyncOpenAI
 from app.core.config import settings
 from typing import Dict, List
@@ -9,7 +14,7 @@ client = AsyncOpenAI(
     base_url=provider.base_url
 
 )
-print('provider.api_key', provider.api_key)
+# print('provider.api_key', provider.api_key)
 
 
 class ChatService:
